@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: dhiww-cyber-bot
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node bot.js
+    envVars:
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: OWNER_ID
+        value: "8053985993"
