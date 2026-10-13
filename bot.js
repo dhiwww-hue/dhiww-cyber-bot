@@ -1,4 +1,5 @@
 require('dotenv').config()
+const express = require('express')
 const { Telegraf, Markup } = require('telegraf')
 const crypto = require('crypto')
 const QRCode = require('qrcode')
@@ -1172,6 +1173,16 @@ bot.command('stats', (ctx) => {
   )
 })
 
+// ==================== WEB SERVER (buat Render) ====================
+const app = express()
+const PORT = process.env.PORT || 3000
+
+app.get('/', (req, res) => res.send('🤖 Dhiww Cyber Toolkit Bot is running!'))
+app.get('/health', (req, res) => res.json({ status: 'OK', uptime: process.uptime() }))
+
+app.listen(PORT, () => {
+  console.log(`🌐 Web server jalan di port ${PORT}`)
+})
 // ==================== LAUNCH ====================
 bot.launch()
 console.log('🤖 Dhiww Cyber Toolkit Bot jalan...')
